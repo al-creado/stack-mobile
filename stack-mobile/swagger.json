@@ -1,0 +1,2120 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "StackApi",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "/stackapi"
+    }
+  ],
+  "paths": {
+    "/api/Chambers/by-warehouse/{warehouseId}": {
+      "get": {
+        "tags": [
+          "Chambers"
+        ],
+        "parameters": [
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChamberResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChamberResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChamberResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chambers/{id}": {
+      "get": {
+        "tags": [
+          "Chambers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Chambers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateChamberDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateChamberDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateChamberDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Chambers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Chambers": {
+      "post": {
+        "tags": [
+          "Chambers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChamberDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChamberDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChamberDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chambers/{id}/boundary": {
+      "post": {
+        "tags": [
+          "Chambers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveChamberBoundaryDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveChamberBoundaryDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveChamberBoundaryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChamberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Chambers/{id}/submit": {
+      "post": {
+        "tags": [
+          "Chambers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/chambers/setup": {
+      "post": {
+        "tags": [
+          "ChamberSetup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompleteChamberSetupDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompleteChamberSetupDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompleteChamberSetupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteChamberSetupResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteChamberSetupResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteChamberSetupResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Employee/missing-documents/{empid}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "empid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/upload-document": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "EmpId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "DocumentType": {
+                    "type": "string"
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "EmpId": {
+                  "style": "form"
+                },
+                "DocumentType": {
+                  "style": "form"
+                },
+                "File": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/register": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "EmpName": {
+                    "type": "string"
+                  },
+                  "FatherName": {
+                    "type": "string"
+                  },
+                  "Gender": {
+                    "type": "string"
+                  },
+                  "BirthDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "ContactNo": {
+                    "type": "string"
+                  },
+                  "CurrentAddress": {
+                    "type": "string"
+                  },
+                  "PermanentAddress": {
+                    "type": "string"
+                  },
+                  "Qualification": {
+                    "type": "string"
+                  },
+                  "EmailId": {
+                    "type": "string"
+                  },
+                  "State": {
+                    "type": "string"
+                  },
+                  "REC_Staus": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "AadhaarNo": {
+                    "type": "string"
+                  },
+                  "PanNo": {
+                    "type": "string"
+                  },
+                  "MaritalStatus": {
+                    "type": "string"
+                  },
+                  "RelativeContact": {
+                    "type": "string"
+                  },
+                  "IFSC": {
+                    "type": "string"
+                  },
+                  "BankName": {
+                    "type": "string"
+                  },
+                  "BranchName": {
+                    "type": "string"
+                  },
+                  "AccountHolderName": {
+                    "type": "string"
+                  },
+                  "AccountNo": {
+                    "type": "string"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Sign": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "AadhaarFront": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "AadhaarBack": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "PanPhoto": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Passbook": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Resume": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "CharacterCertificate": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "PoliceVerification": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Form11": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "ExperienceLetter": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "EmpName": {
+                  "style": "form"
+                },
+                "FatherName": {
+                  "style": "form"
+                },
+                "Gender": {
+                  "style": "form"
+                },
+                "BirthDate": {
+                  "style": "form"
+                },
+                "ContactNo": {
+                  "style": "form"
+                },
+                "CurrentAddress": {
+                  "style": "form"
+                },
+                "PermanentAddress": {
+                  "style": "form"
+                },
+                "Qualification": {
+                  "style": "form"
+                },
+                "EmailId": {
+                  "style": "form"
+                },
+                "State": {
+                  "style": "form"
+                },
+                "REC_Staus": {
+                  "style": "form"
+                },
+                "AadhaarNo": {
+                  "style": "form"
+                },
+                "PanNo": {
+                  "style": "form"
+                },
+                "MaritalStatus": {
+                  "style": "form"
+                },
+                "RelativeContact": {
+                  "style": "form"
+                },
+                "IFSC": {
+                  "style": "form"
+                },
+                "BankName": {
+                  "style": "form"
+                },
+                "BranchName": {
+                  "style": "form"
+                },
+                "AccountHolderName": {
+                  "style": "form"
+                },
+                "AccountNo": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "Sign": {
+                  "style": "form"
+                },
+                "AadhaarFront": {
+                  "style": "form"
+                },
+                "AadhaarBack": {
+                  "style": "form"
+                },
+                "PanPhoto": {
+                  "style": "form"
+                },
+                "Passbook": {
+                  "style": "form"
+                },
+                "Resume": {
+                  "style": "form"
+                },
+                "CharacterCertificate": {
+                  "style": "form"
+                },
+                "PoliceVerification": {
+                  "style": "form"
+                },
+                "Form11": {
+                  "style": "form"
+                },
+                "ExperienceLetter": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/chambers/{chamberId}/stack-config": {
+      "get": {
+        "tags": [
+          "StackConfig"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackConfigResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackConfigResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackConfigResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "StackConfig"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetStackConfigDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetStackConfigDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetStackConfigDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackConfigResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackConfigResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackConfigResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chambers/{chamberId}/stack-config/confirm": {
+      "post": {
+        "tags": [
+          "StackConfig"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/StackDeatils/GetStackDetailsById": {
+      "get": {
+        "tags": [
+          "StackDeatils"
+        ],
+        "parameters": [
+          {
+            "name": "warehouseId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/StackDeatils/GetWarehouseWrsbyId": {
+      "get": {
+        "tags": [
+          "StackDeatils"
+        ],
+        "parameters": [
+          {
+            "name": "warehouseId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/StackInspection/StackInspection": {
+      "post": {
+        "tags": [
+          "StackInspection"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ReportType": {
+                    "type": "string"
+                  },
+                  "WarehouseId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ChamberNo": {
+                    "type": "string"
+                  },
+                  "LockPhoto": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "EntBy": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "StackNo": {
+                    "type": "string"
+                  },
+                  "StackPosition": {
+                    "type": "string"
+                  },
+                  "CommodityId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "BankId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "CommodityName": {
+                    "type": "string"
+                  },
+                  "BagCount": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "NetWet": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "ExtraBags": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Remarks": {
+                    "type": "string"
+                  },
+                  "FrontImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "BackImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "LeftImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "RightImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "TopImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "StackCardImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "SampleCommodityImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "BlocksJson": {
+                    "type": "string"
+                  },
+                  "Blocks": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/StackBlockModel"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "ReportType": {
+                  "style": "form"
+                },
+                "WarehouseId": {
+                  "style": "form"
+                },
+                "ChamberNo": {
+                  "style": "form"
+                },
+                "LockPhoto": {
+                  "style": "form"
+                },
+                "EntBy": {
+                  "style": "form"
+                },
+                "StackNo": {
+                  "style": "form"
+                },
+                "StackPosition": {
+                  "style": "form"
+                },
+                "CommodityId": {
+                  "style": "form"
+                },
+                "BankId": {
+                  "style": "form"
+                },
+                "CommodityName": {
+                  "style": "form"
+                },
+                "BagCount": {
+                  "style": "form"
+                },
+                "NetWet": {
+                  "style": "form"
+                },
+                "ExtraBags": {
+                  "style": "form"
+                },
+                "Remarks": {
+                  "style": "form"
+                },
+                "FrontImage": {
+                  "style": "form"
+                },
+                "BackImage": {
+                  "style": "form"
+                },
+                "LeftImage": {
+                  "style": "form"
+                },
+                "RightImage": {
+                  "style": "form"
+                },
+                "TopImage": {
+                  "style": "form"
+                },
+                "StackCardImage": {
+                  "style": "form"
+                },
+                "SampleCommodityImage": {
+                  "style": "form"
+                },
+                "BlocksJson": {
+                  "style": "form"
+                },
+                "Blocks": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/StackInspection/UpdateWarehouseStatus": {
+      "post": {
+        "tags": [
+          "StackInspection"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "WarehouseId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "StatusDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Fromdate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Enddate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Statustype": {
+                    "type": "string"
+                  },
+                  "Remarks": {
+                    "type": "string"
+                  },
+                  "CreatedBy": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "WarehouseId": {
+                  "style": "form"
+                },
+                "StatusDate": {
+                  "style": "form"
+                },
+                "Fromdate": {
+                  "style": "form"
+                },
+                "Enddate": {
+                  "style": "form"
+                },
+                "Statustype": {
+                  "style": "form"
+                },
+                "Remarks": {
+                  "style": "form"
+                },
+                "CreatedBy": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/StackInspection/SaveMultiple": {
+      "post": {
+        "tags": [
+          "StackInspection"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WHRStackMappingRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WHRStackMappingRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WHRStackMappingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/chambers/{chamberId}/stacks": {
+      "get": {
+        "tags": [
+          "Stacks"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StackResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StackResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StackResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Stacks"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveStackDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveStackDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveStackDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chambers/{chamberId}/stacks/{stackId}": {
+      "get": {
+        "tags": [
+          "Stacks"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "stackId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stacks"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "stackId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStackDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStackDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStackDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stacks"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "stackId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/chambers/{chamberId}/stacks/{stackId}/position": {
+      "put": {
+        "tags": [
+          "Stacks"
+        ],
+        "parameters": [
+          {
+            "name": "chamberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "stackId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetStackPositionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetStackPositionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetStackPositionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StackResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/warehouses/{warehouseId}/stacks": {
+      "get": {
+        "tags": [
+          "WarehouseStacks"
+        ],
+        "parameters": [
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "onlyUnpositioned",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StackResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StackResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StackResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChamberResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "chamberName": {
+            "type": "string",
+            "nullable": true
+          },
+          "chamberNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalFloors": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "approvalStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "gateLatitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "gateLongitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "latLng": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LatLngPointDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompleteChamberSetupDto": {
+        "type": "object",
+        "properties": {
+          "chamberId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "chamber": {
+            "$ref": "#/components/schemas/CreateChamberDto"
+          },
+          "boundary": {
+            "$ref": "#/components/schemas/SaveChamberBoundaryDto"
+          },
+          "stackConfig": {
+            "$ref": "#/components/schemas/SetStackConfigDto"
+          },
+          "stacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StackSetupItemDto"
+            },
+            "nullable": true
+          },
+          "confirm": {
+            "type": "boolean"
+          },
+          "submit": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompleteChamberSetupResponseDto": {
+        "type": "object",
+        "properties": {
+          "chamber": {
+            "$ref": "#/components/schemas/ChamberResponseDto"
+          },
+          "stackConfig": {
+            "$ref": "#/components/schemas/StackConfigResponseDto"
+          },
+          "stacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StackResponseDto"
+            },
+            "nullable": true
+          },
+          "unassignedStacksInWarehouse": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StackResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateChamberDto": {
+        "type": "object",
+        "properties": {
+          "warehouseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "chamberName": {
+            "type": "string",
+            "nullable": true
+          },
+          "chamberNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalFloors": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GatePointDto": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "long": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LatLngPointDto": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "long": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SaveChamberBoundaryDto": {
+        "type": "object",
+        "properties": {
+          "latLng": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LatLngPointDto"
+            },
+            "nullable": true
+          },
+          "gate": {
+            "$ref": "#/components/schemas/GatePointDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SaveStackDto": {
+        "type": "object",
+        "properties": {
+          "stackName": {
+            "type": "string",
+            "nullable": true
+          },
+          "positionRow": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionCol": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionSequence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "selectedViews": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "wrsAllocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WrsAllocationDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetStackConfigDto": {
+        "type": "object",
+        "properties": {
+          "numberingPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "orientation": {
+            "type": "string",
+            "nullable": true
+          },
+          "gridRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gridCols": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetStackPositionDto": {
+        "type": "object",
+        "properties": {
+          "positionRow": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "positionCol": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "positionSequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "positionPattern": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StackBlockModel": {
+        "type": "object",
+        "properties": {
+          "blockNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "danda": {
+            "type": "number",
+            "format": "double"
+          },
+          "patta": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StackConfigResponseDto": {
+        "type": "object",
+        "properties": {
+          "chamberId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numberingPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "orientation": {
+            "type": "string",
+            "nullable": true
+          },
+          "gridRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gridCols": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isConfirmed": {
+            "type": "boolean"
+          },
+          "totalCells": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "positionedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "positionedStacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StackResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StackResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "chamberId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "chamberName": {
+            "type": "string",
+            "nullable": true
+          },
+          "stackName": {
+            "type": "string",
+            "nullable": true
+          },
+          "positionRow": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionCol": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionSequence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPositioned": {
+            "type": "boolean"
+          },
+          "totalBags": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalNetWeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "selectedViews": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "wrsAllocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WrsAllocationDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StackSetupItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "stackName": {
+            "type": "string",
+            "nullable": true
+          },
+          "positionRow": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionCol": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionSequence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "selectedViews": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "wrsAllocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WrsAllocationDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateChamberDto": {
+        "type": "object",
+        "properties": {
+          "chamberName": {
+            "type": "string",
+            "nullable": true
+          },
+          "chamberNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalFloors": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateStackDto": {
+        "type": "object",
+        "properties": {
+          "stackName": {
+            "type": "string",
+            "nullable": true
+          },
+          "positionRow": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionCol": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionSequence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positionPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "selectedViews": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "wrsAllocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WrsAllocationDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WHRStackItem": {
+        "type": "object",
+        "properties": {
+          "wrsNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "bags": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "netWet": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WHRStackMappingRequest": {
+        "type": "object",
+        "properties": {
+          "stackNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "wid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "entBy": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "wrsList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WHRStackItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WrsAllocationDto": {
+        "type": "object",
+        "properties": {
+          "wrsNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "bags": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "netWeight": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
