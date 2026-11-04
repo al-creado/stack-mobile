@@ -48,7 +48,7 @@ export class WarehouseStore {
     this.failed.set(false);
     forkJoin({
       chambers: this.chambersApi.byWarehouse(wid).pipe(catchError(() => { this.failed.set(true); return of([] as ChamberResponseDto[]); })),
-      stacks: this.stacksApi.byWarehouse(wid).pipe(catchError(() => of([] as StackResponseDto[]))),
+      stacks: this.stacksApi.byWarehouse(wid).pipe(catchError(() => { this.failed.set(true); return of([] as StackResponseDto[]); })),
     }).subscribe(({ chambers, stacks }) => {
       this.chambers.set(chambers ?? []);
       this.stacks.set(stacks ?? []);

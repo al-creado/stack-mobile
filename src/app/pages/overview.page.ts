@@ -27,6 +27,14 @@ import { MiniPlan, StatusBadge } from '../shared/ui-bits';
         </div>
       </div>
 
+      @if (store.failed() && !store.loading()) {
+        <div class="notice" role="alert" style="margin-bottom:16px">
+          <app-icon name="alert" [size]="20" />
+          <span style="flex:1">Couldn't load this warehouse. Check the connection and try again.</span>
+          <button class="btn sm" (click)="store.reload()"><app-icon name="refresh" [size]="16" />Try again</button>
+        </div>
+      }
+
       <section class="summary" aria-label="Totals">
         <div><div class="k">Chambers</div><div class="v">{{ t().chambers }}</div></div>
         <div><div class="k">Stacks</div><div class="v">{{ t().stacks }}</div></div>
