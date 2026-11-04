@@ -57,7 +57,8 @@
               "@fontsource/ibm-plex-sans/latin-500.css",
               "@fontsource/ibm-plex-sans/latin-600.css",
               "@fontsource/ibm-plex-sans/latin-700.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/monitoring.scss"
             ]
           },
           "configurations": {

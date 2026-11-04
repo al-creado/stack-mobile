@@ -55,10 +55,10 @@ export class DeviceService {
   }
 
   /** Opens the camera and returns a compressed JPEG blob plus a preview URL. */
-  async takePhoto(): Promise<{ blob: Blob; preview: string } | null> {
+  async takePhoto(source: 'prompt' | 'camera' = 'prompt'): Promise<{ blob: Blob; preview: string } | null> {
     try {
       const photo = await Camera.getPhoto({
-        source: CameraSource.Prompt, // camera or gallery
+        source: source === 'camera' ? CameraSource.Camera : CameraSource.Prompt, // prompt = camera or gallery
         resultType: CameraResultType.Uri,
         quality: 70,
         width: 1600,

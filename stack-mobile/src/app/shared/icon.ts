@@ -22,6 +22,10 @@ const PATHS: Record<string, string> = {
   grid: 'M4 4h16v16H4zM4 10h16M4 15h16M10 4v16M15 4v16',
   warehouse: 'M3 10l9-6 9 6M5 9v11h14V9M9 20v-6h6v6',
   bag: 'M7 5h10l2 15H5zM9 5c0-1 1-2 3-2s3 1 3 2M8 10h8',
+  minus: 'M5 12h14',
+  layers: 'M12 3l9 5-9 5-9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5',
+  alert: 'M12 7v6.5M12 17.2v.01',
+  monitor: 'M5 4h14v16H5zM9 9h6M9 13h6M9 17h3',
 };
 
 @Component({

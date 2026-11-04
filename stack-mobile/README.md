@@ -40,9 +40,26 @@ src/app/pages/
   chamber-detail  details, GPS boundary + gate, stack grid layout, stacks list, submit, delete
   stack-form   stack name, views, WRS allocations
   inspection   inspection form, blocks, 8 camera photos -> /api/StackInspection/StackInspection
+src/app/monitoring/      Stock monitoring (the auditor flow, and the app's landing page)
+  monitoring-list.page   chambers + stacks with status, tap a stack to open its details sheet
+  stack-details.sheet    bags (auto from blocks), net weight, bank, commodity category, remark, blocks
+  stack-photos.page      the 7 required photos (front, back, left, right, top, stack card, sample)
+  stack-preview.page     photo strip + summary; Edit bags / qty, or Submit stack
+  stack-result.page      "Stack matched" / "Stack not matched"
+  monitoring-review.page totals, per-chamber progress, Submit stock monitoring
+src/app/core/monitoring.store.ts   draft + result state, upload, matched check
 ```
 
+Flow: `/monitoring` -> details sheet -> `/monitoring/stack/:id/photos` -> `/preview` -> `/result` -> back to the list -> `/monitoring/review`.
+Chamber setup, stack layout and the one-off Inspect form stay available from the "Monitor / Overview / Chambers / Stacks / Inspect" tab bar.
+
 ## Notes
+
+- **Stock monitoring assumptions to confirm**
+  - *Bank / commodity lists* in `core/lookups.ts` are placeholders (StackApi has no endpoint for them). Replace the ids before release; they are sent as `BankId` / `CommodityId`.
+  - *Matched* is decided by the server if its response has a `matched` / `isMatched` boolean; otherwise the app compares the counted bags and net weight with the stack's recorded totals (`MonitoringStore`).
+  - Each stack is sent with `ReportType = "Stock Monitoring"` (`MONITORING_REPORT_TYPE`). There is no "close the round" endpoint, so *Submit stock monitoring* confirms and starts a clean round.
+  - Progress is held in memory: closing the app mid-round loses unsubmitted drafts (submitted stacks are already saved on the server).
 
 - **CORS**: on the device, `CapacitorHttp` (enabled in `capacitor.config.ts`) sends requests natively, so the API does not need CORS for the app.
 - **No sign-in**: the app opens on `defaultWarehouseId` from `src/environments/`. The last warehouse typed on the home screen is remembered on the device.
