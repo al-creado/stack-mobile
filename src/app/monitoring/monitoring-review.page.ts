@@ -4,40 +4,55 @@ import { Router } from '@angular/router';
 import { MonitoringStore } from '../core/monitoring.store';
 import { UiService } from '../core/ui.service';
 import { Icon } from '../shared/icon';
-import { MonFrame } from './mon-frame';
+import { Topbar } from '../shared/topbar';
 
-/** Screen 6: totals and per-chamber progress, then the final "Submit stock monitoring". */
+/** Totals and per-chamber progress, then the final "Submit stock monitoring". */
 @Component({
   selector: 'app-monitoring-review',
-  imports: [MonFrame, Icon, DecimalPipe],
+  imports: [Topbar, Icon, DecimalPipe],
   template: `
-    <app-mon-frame title="Review and submit" subtitle="Stock monitoring" backLink="/monitoring">
-      <section class="mon-card mon-review-stats">
-        <div><span>Chambers</span><b>{{ sum().chambers }}</b></div>
-        <div><span>Total stacks</span><b>{{ sum().stacks }}</b></div>
-        <div><span>Completed</span><b>{{ sum().done }}</b></div>
-        <div><span>Total bags</span><b class="num">{{ sum().bags | number }}</b></div>
-        <div class="wide"><span>Total weight</span><b class="num">{{ sum().weight | number: '1.2-2' }} MT</b></div>
+    <app-topbar title="Review and submit" [back]="true" [showWarehouse]="false" />
+    <main class="page has-actionbar">
+      <div class="page-head">
+        <div class="titles">
+          <h1>Review and submit</h1>
+          <p>Stock monitoring</p>
+        </div>
+      </div>
+
+      <section class="summary" aria-label="Totals">
+        <div><div class="k">Chambers</div><div class="v">{{ sum().chambers }}</div></div>
+        <div><div class="k">Stacks completed</div><div class="v">{{ sum().done }}<small>of {{ sum().stacks }}</small></div></div>
+        <div><div class="k">Total bags</div><div class="v">{{ sum().bags | number }}</div></div>
+        <div><div class="k">Total weight</div><div class="v">{{ sum().weight | number: '1.0-2' }}<small>MT</small></div></div>
       </section>
 
-      <h3 class="mon-section">Chambers</h3>
-      @for (g of mon.groups(); track g.chamber.id) {
-        <section class="mon-card mon-review-row">
-          <span class="mon-check" [class.on]="g.done === g.stacks.length"><app-icon name="check" [size]="22" /></span>
-          <span class="mon-review-text">
-            <b>{{ g.chamber.chamberName || 'Chamber ' + g.chamber.chamberNo }}</b>
-            <small>{{ g.done }} / {{ g.stacks.length }} stacks completed</small>
-          </span>
-          @if (g.notMatched) { <span class="mon-status warn">{{ g.notMatched }} not matched</span> }
-        </section>
-      }
+      <section class="panel">
+        <div class="panel-head"><h2>Chambers</h2></div>
+        <ul class="rows">
+          @for (g of mon.groups(); track g.chamber.id) {
+            <li>
+              <div class="row-link" style="cursor:default">
+                <span class="badge plain" [class]="'badge plain ' + (g.done === g.stacks.length ? 'ok' : '')"><app-icon name="check" [size]="14" /></span>
+                <div class="row-main">
+                  <div class="row-title">{{ g.chamber.chamberName || 'Chamber ' + g.chamber.chamberNo }}</div>
+                  <div class="row-meta">{{ g.done }} / {{ g.stacks.length }} stacks completed</div>
+                </div>
+                @if (g.notMatched) { <span class="badge warn">{{ g.notMatched }} not matched</span> }
+              </div>
+            </li>
+          } @empty {
+            <li class="empty"><h3>Nothing to review</h3><p>There are no stacks in this warehouse yet.</p></li>
+          }
+        </ul>
+      </section>
 
-      @if (!allDone()) { <p class="mon-note">Finish every stack before submitting stock monitoring.</p> }
+      @if (!allDone()) { <p class="muted" style="text-align:center">Finish every stack before submitting stock monitoring.</p> }
 
-      <div class="mon-foot">
-        <button class="mon-btn" [disabled]="!allDone()" (click)="submit()">Submit stock monitoring</button>
+      <div class="actionbar">
+        <button class="btn primary" [disabled]="!allDone()" (click)="submit()"><app-icon name="send" [size]="18" />Submit stock monitoring</button>
       </div>
-    </app-mon-frame>
+    </main>
   `,
 })
 export class MonitoringReviewPage {

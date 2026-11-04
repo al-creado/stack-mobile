@@ -40,7 +40,7 @@ src/app/pages/
   chamber-detail  details, GPS boundary + gate, stack grid layout, stacks list, submit, delete
   stack-form   stack name, views, WRS allocations
   inspection   inspection form, blocks, 8 camera photos -> /api/StackInspection/StackInspection
-src/app/monitoring/      Stock monitoring (the auditor flow, and the app's landing page)
+src/app/monitoring/      Stock monitoring module (auditor flow), inside the same shell as chambers/stacks
   monitoring-list.page   chambers + stacks with status, tap a stack to open its details sheet
   stack-details.sheet    bags (auto from blocks), net weight, bank, commodity category, remark, blocks
   stack-photos.page      the 7 required photos (front, back, left, right, top, stack card, sample)
@@ -50,8 +50,8 @@ src/app/monitoring/      Stock monitoring (the auditor flow, and the app's landi
 src/app/core/monitoring.store.ts   draft + result state, upload, matched check
 ```
 
-Flow: `/monitoring` -> details sheet -> `/monitoring/stack/:id/photos` -> `/preview` -> `/result` -> back to the list -> `/monitoring/review`.
-Chamber setup, stack layout and the one-off Inspect form stay available from the "Monitor / Overview / Chambers / Stacks / Inspect" tab bar.
+Flow (tab bar: Monitor, or the "Stock monitoring" button on Overview): `/monitoring` -> details sheet -> `/monitoring/stack/:id/photos` -> `/preview` -> `/result` -> back to the list -> `/monitoring/review`.
+It reads the chambers and stack positions you already map (Position in the preview is the stack's row/column from the chamber layout; each chamber row links to its layout) and uses the same styles as the rest of the app.
 
 ## Notes
 

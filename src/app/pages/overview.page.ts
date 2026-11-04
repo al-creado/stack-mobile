@@ -21,6 +21,7 @@ import { MiniPlan, StatusBadge } from '../shared/ui-bits';
             <button class="link-btn" (click)="ui.pickerOpen.set(true)">Change</button></p>
         </div>
         <div class="actions">
+          <a class="btn" routerLink="/monitoring"><app-icon name="monitor" [size]="18" />Stock monitoring</a>
           <a class="btn" routerLink="/inspect"><app-icon name="inspect" [size]="18" />Inspect a stack</a>
           <a class="btn primary" routerLink="/chambers/new"><app-icon name="plus" [size]="18" />New chamber</a>
         </div>

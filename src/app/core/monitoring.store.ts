@@ -101,6 +101,15 @@ export class MonitoringStore {
     return c?.chamberName || stack.chamberName || (c?.chamberNo ? `Chamber ${c.chamberNo}` : `Chamber ${stack.chamberId}`);
   }
 
+  /** 1-based place of a stack among its chamber's stacks ("stack 2 of 5"). */
+  indexInChamber(stack: StackResponseDto | undefined): number {
+    const list = stack ? this.wh.stacksByChamber().get(stack.chamberId) ?? [] : [];
+    return Math.max(1, list.findIndex((x) => x.id === stack?.id) + 1);
+  }
+  countInChamber(stack: StackResponseDto | undefined): number {
+    return stack ? this.wh.stacksByChamber().get(stack.chamberId)?.length ?? 1 : 1;
+  }
+
   statusOf(stackId: number): StackStatus {
     const r = this.results()[stackId];
     if (r) return r.matched ? 'matched' : 'not_matched';

@@ -5,10 +5,10 @@ import { DeviceService } from './core/device.service';
 import { Icon } from './shared/icon';
 
 const NAV = [
-  { path: '/monitoring', icon: 'monitor', label: 'Monitor' },
   { path: '/overview', icon: 'overview', label: 'Overview' },
   { path: '/chambers', icon: 'chamber', label: 'Chambers' },
   { path: '/stacks', icon: 'stack', label: 'Stacks' },
+  { path: '/monitoring', icon: 'monitor', label: 'Monitor' },
   { path: '/inspect', icon: 'inspect', label: 'Inspect' },
 ];
 

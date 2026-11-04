@@ -3,52 +3,61 @@ import { Router } from '@angular/router';
 import { DeviceService } from '../core/device.service';
 import { MonitoringStore, PHOTO_SLOTS } from '../core/monitoring.store';
 import { Icon } from '../shared/icon';
-import { MonFrame } from './mon-frame';
+import { Topbar } from '../shared/topbar';
 
-/** Screen 3: the seven required photos. The camera button fills the highlighted slot. */
+/** The seven required photos. The camera button fills the highlighted slot. */
 @Component({
   selector: 'app-stack-photos',
-  imports: [MonFrame, Icon],
+  imports: [Topbar, Icon],
   template: `
-    @if (stack(); as s) {
-      <app-mon-frame [title]="(s.stackName || '') + ': Photos'" [subtitle]="chamber() + ', Stack ' + position() + ' of ' + total()">
-        <section class="mon-card mon-hint">
-          Minimum 4 side photos and 1 top photo, plus the stack card and a sample commodity photo (7 in total).
-        </section>
+    <app-topbar [title]="(stack()?.stackName || '') + ' photos'" [back]="true" [showWarehouse]="false" />
+    <main class="page has-actionbar tall-actionbar" style="max-width: 860px">
+      @if (stack(); as s) {
+        <div class="page-head">
+          <div class="titles">
+            <h1>{{ s.stackName }}: photos</h1>
+            <p>{{ chamber() }}, stack {{ position() }} of {{ total() }}</p>
+          </div>
+        </div>
+
+        <div class="notice">
+          <app-icon name="camera" [size]="20" />
+          <span>Minimum 4 side photos and 1 top photo, plus the stack card and a sample commodity photo (7 in total).</span>
+        </div>
 
         @if (showTips()) {
-          <section class="mon-card mon-hint tips">
-            <b>Tips</b>
-            <ul>
-              <li>Stand back so the whole face of the stack is in frame.</li>
-              <li>Keep the stack card readable and the sample in good light.</li>
-              <li>Retake any photo that is blurred or cut off.</li>
-            </ul>
-          </section>
+          <div class="notice mt">
+            <app-icon name="alert" [size]="20" />
+            <span>Stand back so the whole face of the stack is in frame. Keep the stack card readable and the sample in good light. Retake anything blurred or cut off.</span>
+          </div>
         }
 
-        <div class="mon-photos">
-          @for (slot of slots; track slot.field; let i = $index) {
-            <button class="mon-photo" [class.active]="active() === i" [class.done]="!!shot(i)" (click)="active.set(i)">
-              <span class="mon-photo-img">
-                @if (shot(i); as p) { <img [src]="p.preview" [alt]="slot.label" /> }
-                @else { <app-icon name="camera" [size]="34" /> }
-              </span>
-              <span class="mon-photo-label">{{ i + 1 }}. {{ slot.label }}</span>
-            </button>
-          }
-        </div>
-
-        <div class="mon-foot two-rows">
-          <div class="mon-camera-row">
-            <button class="mon-link" (click)="capture(active())" [disabled]="!shot(active())">Retake</button>
-            <button class="mon-shutter" (click)="capture(active())" [disabled]="busy()" aria-label="Take photo"><app-icon name="camera" [size]="30" /></button>
-            <button class="mon-link" (click)="showTips.set(!showTips())">Tips</button>
+        <section class="panel mt">
+          <div class="panel-head"><h2>Photos</h2><span class="hint num">{{ count() }} of {{ slots.length }}</span></div>
+          <div class="panel-body stack-v">
+            <div class="progress" aria-hidden="true"><i [style.width.%]="(count() / slots.length) * 100"></i></div>
+            <div class="photos">
+              @for (slot of slots; track slot.field; let i = $index) {
+                <button class="photo" [class.done]="!!shot(i)" [class.active]="active() === i" (click)="active.set(i)" [attr.aria-label]="'Photo ' + (i + 1) + ': ' + slot.label">
+                  @if (shot(i); as p) {
+                    <img [src]="p.preview" [alt]="slot.label" /><span class="cap">{{ i + 1 }}. {{ slot.label }}</span>
+                  } @else {
+                    <app-icon name="camera" [size]="22" />{{ i + 1 }}. {{ slot.label }}
+                  }
+                </button>
+              }
+            </div>
           </div>
-          <button class="mon-btn" [disabled]="count() < slots.length" (click)="preview()">Save and preview ({{ count() }}/{{ slots.length }})</button>
+        </section>
+
+        <div class="actionbar wrap">
+          <button class="btn" (click)="capture(active())" [disabled]="!shot(active()) || busy()">Retake</button>
+          <button class="btn" (click)="capture(active())" [disabled]="busy()"><app-icon name="camera" [size]="18" />Take photo {{ active() + 1 }}</button>
+          <button class="btn ghost" (click)="showTips.set(!showTips())">Tips</button>
+          <button class="btn primary full" [disabled]="count() < slots.length" (click)="preview()">Save and preview ({{ count() }}/{{ slots.length }})</button>
         </div>
-      </app-mon-frame>
-    }
+      }
+    </main>
   `,
 })
 export class StackPhotosPage implements OnInit {
@@ -63,16 +72,9 @@ export class StackPhotosPage implements OnInit {
   protected showTips = signal(false);
 
   protected stack = computed(() => this.mon.stackById(+this.stackId()));
-  protected chamber = computed(() => this.mon.chamberNameOf(this.stack()).toUpperCase());
-  protected position = computed(() => {
-    const s = this.stack();
-    const siblings = s ? this.mon.groups().find((g) => g.chamber.id === s.chamberId)?.stacks ?? [] : [];
-    return Math.max(1, siblings.findIndex((x) => x.id === s?.id) + 1);
-  });
-  protected total = computed(() => {
-    const s = this.stack();
-    return s ? this.mon.groups().find((g) => g.chamber.id === s.chamberId)?.stacks.length ?? 1 : 1;
-  });
+  protected chamber = computed(() => this.mon.chamberNameOf(this.stack()));
+  protected position = computed(() => this.mon.indexInChamber(this.stack()));
+  protected total = computed(() => this.mon.countInChamber(this.stack()));
   protected count = computed(() => this.mon.photoCount(+this.stackId()));
 
   ngOnInit() {
