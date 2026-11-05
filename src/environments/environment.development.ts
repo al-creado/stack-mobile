@@ -4,5 +4,5 @@ export const environment = {
   // so browser development has no CORS problems. On a device the absolute URL is used.
   apiUrl: '/stackapi',
   // Warehouse shown when the app opens (change to one of yours).
-  defaultWarehouseId: 1,
+  defaultWarehouseId: 14472,
 };
